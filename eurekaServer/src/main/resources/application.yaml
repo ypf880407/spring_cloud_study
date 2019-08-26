@@ -1,0 +1,41 @@
+server:
+  port: 9100
+logging:
+  level:
+    root: INFO
+    org.springframework: ERROR
+    springfox.documentation: ERROR
+    org.hibernate: ERROR
+    org.thymeleaf: ERROR
+    org.apache: ERROR
+    org.eclipse.jetty: ERROR
+    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: INFO
+    org.springframework.boot.web.embedded.tomcat.TomcatWebServer: INFO
+    org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration: INFO
+    org.hibernate.type.descriptor.sql.basicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+  pattern:
+    level: "%-5level"
+    dateformat: "yyyy-MM-dd HH:mm:ss.SSS"
+    console: "[%highlight(${LOG_LEVEL_PATTERN})][%green(%d{${LOG_DATEFORMAT_PATTERN}})][%boldYellow(%5.5thread)]==>%msg%n"
+eureka:
+  client:
+    register-with-eureka: true # 是否将自己注册到Eureka Server.默认为true.当前应用就是Eureka Server.故设为false
+    fetch-registry: true # 表示是否从Eureka Server 获取注册信息，默认为true。因该服务为单点Eureka Server，不需要同步其他Eureka Server节点数据
+    region: beijing
+    availability-zones:
+      beijing: fangshan, fengtai
+    service-url:
+      defaultZone: http://localhost:9101/eureka
+      fangshan: http://localhost:9100/eureka
+      fengtai: http://localhost:9101/eureka
+  server:
+    peer-eureka-status-refresh-time-interval-ms: 5
+    max-time-for-replication: 5
+    eviction-interval-timer-in-ms: 10000 # 移除失效服务的时间间隔单位毫秒，默认60*1000ms(1分钟)
+  instance:
+    lease-expiration-duration-in-seconds: 3 # 每隔一定时间检测不到心跳信号，将server将服务标记为失效服务，默认90秒
+    lease-renewal-interval-in-seconds: 1 # 心跳信号间隔时间，默认30秒
+spring:
+  application:
+    name: eureka-server-1

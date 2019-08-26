@@ -1,0 +1,50 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: spring-cloud-user # 注册到Eureka Server上的应用名称
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    datasource:
+      platform: h2
+      schema: classpath:schema.sql
+      data: classpath:data.sql
+logging:
+  level:
+    root: INFO
+    org.springframework: ERROR
+    springfox.documentation: ERROR
+    org.hibernate: ERROR
+    org.thymeleaf: ERROR
+    org.apache: ERROR
+    org.eclipse.jetty: ERROR
+    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: INFO
+    org.hibernate.type.descriptor.sql.basicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+  pattern:
+    level: "%-5level"
+    dateformat: "yyyy-MM-dd HH:mm:ss.SSS"
+    console: "[%highlight(${LOG_LEVEL_PATTERN})][%green(%d{${LOG_DATEFORMAT_PATTERN}})][%boldYellow(%5.5thread)]==>%msg%n"
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9101/eureka
+      enable: true
+  instance:
+    ip-address: true # 将自己的IP注册到Eureka Server
+    lease-renewal-interval-in-seconds: 1
+management:
+  endpoint:
+    health:
+      enabled: true
+#endpoints:
+#  mappings:
+#    sensitive: false
+#  security：
+#    enabled:
+
+#    file: "[%highlight(${LOG_LEVEL_PATTERN})][%green(%d{${LOG_DATEFORMAT_PATTERN}})][%boldYellow(%thread)][%yellow(%logger)]==>%msg%n"
+#  path: F:\study_space\mavenProgram\spring_cloud_study\user\target

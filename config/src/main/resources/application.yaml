@@ -1,0 +1,41 @@
+server:
+  port: 9200
+spring:
+  application:
+    name: spring-cloud-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/ypf880407/spring-cloud-config.git
+          username: ***
+          password: ***
+logging:
+  level:
+    root: INFO
+    org.springframework: ERROR
+    springfox.documentation: ERROR
+    org.hibernate: ERROR
+    org.thymeleaf: ERROR
+    org.apache: ERROR
+    org.eclipse.jetty: ERROR
+    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: INFO
+    org.springframework.boot.web.embedded.tomcat.TomcatWebServer: INFO
+    org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration: INFO
+    org.hibernate.type.descriptor.sql.basicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+  pattern:
+    level: "%-5level"
+    dateformat: "yyyy-MM-dd HH:mm:ss.SSS"
+    console: "[%highlight(${LOG_LEVEL_PATTERN})][%green(%d{${LOG_DATEFORMAT_PATTERN}})][%boldYellow(%5.5thread)]==>%msg%n"
+eureka:
+  instance:
+    ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:9100/eureka
+    enabled: true
+management:
+  endpoint:
+    health:
+      enabled: true
