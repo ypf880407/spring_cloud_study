@@ -33,7 +33,7 @@
         <spring-cloud-task.version>2.0.0.RELEASE</spring-cloud-task.version>
         <spring-cloud.version>Finchley.SR1</spring-cloud.version>
         <spring-statemachine.version>2.0.1.RELEASE</spring-statemachine.version>
-        <vaadin.version>8.4.4</vaadin.version>
+        <vaadin.version>8.12.3</vaadin.version>
         <maven.test.skip>true</maven.test.skip>
     </properties>
 
